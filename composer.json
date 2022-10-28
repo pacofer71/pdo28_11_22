@@ -1,0 +1,21 @@
+{
+    "name": "pacofer71/pdo1",
+    "description": "Ejemplo PDO",
+    "type": "project",
+    "license": "free",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "pacofer71",
+            "email": "pacofer71@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5",
+        "fakerphp/faker": "^1.20"
+    }
+}
