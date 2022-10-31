@@ -32,6 +32,9 @@ $usuarios = (new Users)->read();
 <body style="background-color:#aaffcc">
     <h5 class="text-center mt-3">Listado de Usuarios</h5>
     <div class="container mt-4">
+        <div class="d-flex my-2 flex-row-reverse">
+            <a href="nuevo.php" class="btn btn-success"><i class="fas fa-plus"></i> Nuevo</a>
+        </div>
         <table class="table table-striped" id="users">
             <thead>
                 <tr>
@@ -71,11 +74,10 @@ $usuarios = (new Users)->read();
         $(document).ready(function() {
             $('#users').DataTable();
         });
-        
     </script>
     <?php
-        if(isset($_SESSION['txt'])){
-            echo <<<TXT
+    if (isset($_SESSION['txt'])) {
+        echo <<<TXT
             <script>
             Swal.fire({
                 icon: 'success',
@@ -85,9 +87,9 @@ $usuarios = (new Users)->read();
               })
               </script>
             TXT;
-            unset($_SESSION['txt']);
-        }
-     ?>
+        unset($_SESSION['txt']);
+    }
+    ?>
 
 </body>
 

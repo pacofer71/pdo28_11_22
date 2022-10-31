@@ -48,8 +48,22 @@ class Users extends Conexion
         self::$conexion = null;
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    public function update(int $id)
+    public function update(int $id): void
     {
+        $q = "update users set nombre=:n, apellidos=:a, email=:e, perfil=:p  where id=:id";
+        $stmt = self::$conexion->prepare($q);
+        try {
+            $stmt->execute([
+                ':n' => $this->nombre,
+                ':a' => $this->apellidos,
+                ':e' => $this->email,
+                ':p' => $this->perfil,
+                ':id' => $id
+            ]);
+        } catch (\PDOException $ex) {
+            die("Error en update: " . $ex->getMessage());
+        }
+        self::$conexion = null;
     }
     public function delete(int $id)
     {
@@ -64,17 +78,17 @@ class Users extends Conexion
         parent::$conexion = null;
     }
     //----------------------------------------EXIST ID _____________________________________________________
-    public function existeId($id): bool
+    public function existeId($id): bool | \stdClass
     {
-        $q = "select id from users where id=:id";
+        $q = "select * from users where id=:id";
         $stmt = self::$conexion->prepare($q);
         try {
             $stmt->execute([':id' => $id]);
         } catch (\PDOException $ex) {
             die("Error en existeId: " . $ex->getMessage());
         }
-        return $stmt->rowCount();
         parent::$conexion = null;
+        return ($stmt->rowCount() == 0) ? false : $stmt->fetch(PDO::FETCH_OBJ);
     }
     //----------------------------------Crear registros _____________________________________________________
     public function crearUsuarios(int $cant): void
