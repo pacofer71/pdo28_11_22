@@ -1,5 +1,7 @@
+.vscode/
+.idea/
+vendor
 .env
 composer.lock
-vendor
-.vscode
-.idea
+
+
