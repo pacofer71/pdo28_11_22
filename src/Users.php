@@ -116,6 +116,27 @@ class Users extends Conexion
         return $stmt->rowCount();
     }
 
+     /**
+     * check if email is duplicate or already exists
+     * @param string $email
+     * @param int|null $id
+     * @return bool
+     */
+
+    public function existeEmail(string $email, ?int $id = null): bool
+    {
+        $q = ($id == null) ? "select id from users where email=:e" : "select id from users where email=:e AND id != :i";
+        $parametros = ($id == null) ? [':e' => $email] : [':e' => $email, ':i' => $id];
+
+        $stmt = self::$conexion->prepare($q);
+        try {
+            $stmt->execute($parametros);
+        } catch (\PDOException $ex) {
+            die("Error en existeMail: " . $ex->getMessage());
+        }
+        return $stmt->rowCount();
+    }
+
     /**
      * Get the value of id
      */

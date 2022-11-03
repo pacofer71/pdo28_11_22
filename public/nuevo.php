@@ -37,6 +37,10 @@ if (isset($_POST['btnEnviar'])) {
         $error = true;
         $_SESSION['errEmail'] = "El email NO tiene un formato válido";
     }
+    if((new Users)->existeEmail($email)){
+        $error=true;
+        $_SESSION['errEmail'] = "*** El email YA está registrado.";
+    }
     if ($error) {
         header("Location:{$_SERVER['PHP_SELF']}");
         die();
