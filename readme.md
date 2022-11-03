@@ -2,7 +2,7 @@
 ## _Ejemplo de un CRUD en PHP (DAW IES Al-ANDALUS)_
 
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+
 
 Utilizaremos Faker para generarnos datos de prueba, sweetalert2 para la info y dotenv para guardar configuraciones en .env
 
